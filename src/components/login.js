@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Cookies from 'universal-cookie';
-import { useHistory } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom'; 
 import { BASE_URL } from './constants';
 
 const theme = createTheme({
@@ -29,10 +29,27 @@ const theme = createTheme({
     },
   },
 });
+
 const SignInSide = () => {
   const [loginError, setLoginError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    // Retrieve email and password from localStorage if "Remember me" is checked
+    const storedEmail = localStorage.getItem('email');
+    const storedPassword = localStorage.getItem('password');
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
 
   const cookies = new Cookies();
+  const navigate = useNavigate();
+
   const handleLogin = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -57,10 +74,9 @@ const SignInSide = () => {
         cookies.set('token', token, { path: '/', secure: false, sameSite: 'strict' });
         cookies.set('role', role);
         const Token = cookies.get('token');
-        console.log("t",responseData.access_token);
+        console.log("t", responseData.access_token);
         // Redirect user to dashboard or perform other actions
-        
-        window.location.href = '/';
+        navigate('/');
       } else {
         const responseData = await response.json();
         console.error('Login failed:', responseData);
@@ -71,6 +87,10 @@ const SignInSide = () => {
       // Handle error (e.g., display error message)
       setLoginError('An error occurred during login.');
     }
+  };
+
+  const handleCheckboxChange = () => {
+    setRememberMe(!rememberMe);
   };
 
   return (
@@ -115,6 +135,8 @@ const SignInSide = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -125,9 +147,11 @@ const SignInSide = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={<Checkbox checked={rememberMe} onChange={handleCheckboxChange} color="primary" />}
                 label="Remember me"
                 sx={{ mt: 1 }}
               />

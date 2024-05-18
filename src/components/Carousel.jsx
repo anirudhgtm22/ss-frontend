@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Image from './Image.jpg'; 
+import img1 from '../components/assets/img1.png'
+import img2 from '../components/assets/img2.png'
+import img3 from '../components/assets/img3.png'
+import img4 from '../components/assets/img4.png'
+import img5 from '../components/assets/img5.png'
+import img6 from '../components/assets/img6.png'
 
 function CarouselComp() {
   const [index, setIndex] = useState(0);
@@ -29,7 +34,7 @@ function CarouselComp() {
   };
 
   const carouselStyle = {
-    height: '75vh', // 3/4 of the viewport height
+    height: '99vh', // 3/4 of the viewport height
     overflow: 'hidden',
     position: 'relative'
   };
@@ -39,25 +44,35 @@ function CarouselComp() {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-end' // Align the image to the bottom
+    alignItems: 'center', // Center the image vertically and horizontally
+    overflow: 'hidden' // Hide any overflow to prevent cropping
   };
 
   const imageStyle = {
-    width: '100%',
-    objectFit: 'contain' // Fit the image inside
-  };
+    maxWidth: '100%', // Ensure the image doesn't exceed the container width
+    maxHeight: '100%', // Ensure the image doesn't exceed the container height
+  }; 
 
   return (
     <div className="carousel-wrapper" style={carouselStyle}>
       <Slider {...settings} className="carousel">
         <div style={imageContainerStyle}>
-          <img src={Image} alt="First slide" style={imageStyle} />
+          <img src={img1} alt="First slide" style={imageStyle} />
         </div>
         <div style={imageContainerStyle}>
-          <img src={Image} alt="Second slide" style={imageStyle} />
+          <img src={img2} alt="Second slide" style={imageStyle} />
         </div>
         <div style={imageContainerStyle}>
-          <img src={Image} alt="Third slide" style={imageStyle} />
+          <img src={img3} alt="Third slide" style={imageStyle} />
+        </div>
+        <div style={imageContainerStyle}>
+          <img src={img4} alt="Third slide" style={imageStyle} />
+        </div>
+        <div style={imageContainerStyle}>
+          <img src={img5} alt="Third slide" style={imageStyle} />
+        </div>
+        <div style={imageContainerStyle}>
+          <img src={img6} alt="Third slide" style={imageStyle} />
         </div>
       </Slider>
     </div>
