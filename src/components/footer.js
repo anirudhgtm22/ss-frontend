@@ -13,17 +13,18 @@ const Footer = () => {
           <p style={addressStyle}>123 Main Street, Delhi, India</p>
           <p style={phoneStyle}>Phone: +123 456 7890</p>
         </div>
-        {/* Right section with navigation buttons */}
+        {/* Right section with navigation buttons and social media icons */}
         <div style={rightSectionStyle}>
-          <Link to="/about" style={navigationLinkStyle}>About Us</Link>
-          <Link to="/services" style={navigationLinkStyle}>Services</Link>
-        </div>
-        {/* Social media icons */}
-        <div style={socialIconsContainerStyle}>
-          <a href="https://www.facebook.com"><FaFacebook style={iconStyle} /></a>
-          <a href="https://twitter.com"><FaTwitter style={iconStyle} /></a>
-          <a href="https://www.instagram.com"><FaInstagram style={iconStyle} /></a>
-          <a href="https://www.linkedin.com"><FaLinkedin style={iconStyle} /></a>
+          <div style={navigationContainerStyle}>
+            <Link to="/about" style={navigationLinkStyle}>About Us</Link>
+            <Link to="/services" style={navigationLinkStyle}>Services</Link>
+          </div>
+          <div style={socialIconsContainerStyle}>
+            <a href="https://www.facebook.com"><FaFacebook style={iconStyle} /></a>
+            <a href="https://twitter.com"><FaTwitter style={iconStyle} /></a>
+            <a href="https://www.instagram.com"><FaInstagram style={iconStyle} /></a>
+            <a href="https://www.linkedin.com"><FaLinkedin style={iconStyle} /></a>
+          </div>
         </div>
       </div>
       {/* Copyright text */}
@@ -41,17 +42,21 @@ const footerStyle = {
 
 const footerContentStyle = {
   display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+  flexDirection: 'column', // Stack content vertically on smaller screens
+  alignItems: 'center', // Center content horizontally
 };
 
 const leftSectionStyle = {
-  textAlign: 'left',
+  textAlign: 'center', // Center text
+  marginBottom: '20px', // Add space between sections
 };
 
 const rightSectionStyle = {
   textAlign: 'center',
-  // marginLeft: 'auto', // Add margin to match indentation with leftSectionStyle
+};
+
+const navigationContainerStyle = {
+  marginBottom: '20px', // Add space between sections
 };
 
 const titleStyle = {
@@ -72,16 +77,16 @@ const phoneStyle = {
 const navigationLinkStyle = {
   color: '#fff',
   textDecoration: 'none',
-  marginLeft: '10px',
+  margin: '0 10px', // Add space between links
 };
 
 const socialIconsContainerStyle = {
-  textAlign: 'center',
+  marginBottom: '20px', // Add space between sections
 };
 
 const iconStyle = {
   fontSize: '24px',
-  margin: '0 10px',
+  margin: '0 10px', // Add space between icons
   color: '#fff',
 };
 

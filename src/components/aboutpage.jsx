@@ -9,7 +9,9 @@ const AboutUsPage = () => {
       {/* <Navbar /> */}
       <Container maxWidth="lg" style={{ paddingTop: '20px' }}>
         <Paper elevation={3} style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
-          <Typography variant="h2" gutterBottom>About Us</Typography>
+          <Typography variant="h2" gutterBottom>
+            About Us
+          </Typography>
           <Typography variant="body1" paragraph>
             Swarn Sarthi web app is a digital platform designed to connect volunteers with elderly individuals who need assistance with daily tasks, such as grocery shopping, transportation, or even just companionship. The web app aims to bridge the gap between the elderly population and the younger generation by providing a platform for volunteers to offer their time and services to support the elderly community.
           </Typography>
@@ -22,10 +24,9 @@ const AboutUsPage = () => {
         </Paper>
       </Container>
       <div style={{ marginTop: '20px' }}>
-      <Footer />
+        <Footer />
       </div>
     </div> 
-    
   );
 }
 

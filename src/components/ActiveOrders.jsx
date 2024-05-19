@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Table, TableHead, TableBody, TableRow, TableCell, Button, Modal, Box, Grid, Divider, IconButton ,TextField} from '@mui/material';
+import { Typography, Table, TableHead, TableBody, TableRow, TableCell, Button, Modal, Box, Grid, Divider, IconButton, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Cookies from 'js-cookie';
 import { BASE_URL } from './constants';
@@ -7,23 +7,17 @@ import { BASE_URL } from './constants';
 const OrderDetailsModal = ({ selectedOrder, handleClose, onAcceptRequest }) => {
   return (
     <Modal open={true} onClose={handleClose}>
-      <Box style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', padding: 24, borderRadius: 8, minWidth: 400, width: '70%', maxWidth: 800 }}>
+      <Box style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', padding: 24, borderRadius: 8, minWidth: 300, width: '80%', maxWidth: 400 }}>
         <IconButton style={{ position: 'absolute', top: 10, right: 10 }} onClick={handleClose}>
           <CloseIcon />
         </IconButton>
-        <Grid container alignItems="center" style={{ marginBottom: 16 }}>
-          <Grid item>
-            <Typography variant="h6">{`Order ID: ${selectedOrder.id}`}</Typography>
-          </Grid>
-        </Grid>
+        <Typography variant="h6" style={{ marginBottom: 16 }}>{`Order ID: ${selectedOrder.id}`}</Typography>
         <Divider style={{ marginBottom: 16 }} />
         <TextField label="Service" value={selectedOrder.service.title} fullWidth disabled sx={{ marginBottom: 2 }} />
         <TextField label="Amount" value={selectedOrder.amount} fullWidth disabled sx={{ marginBottom: 2 }} />
         <TextField label="Elderly's Name" value={`${selectedOrder.elderly.user.first_name} ${selectedOrder.elderly.user.last_name}`} fullWidth disabled sx={{ marginBottom: 2 }} />
         <TextField label="Order Date" value={parseAndFormatDate(selectedOrder.order_date)} fullWidth disabled sx={{ marginBottom: 2 }} />
         <TextField label="Completed At" value={selectedOrder.completed_at || 'Not Completed'} fullWidth disabled sx={{ marginBottom: 2 }} />
-
-        {/* Add other order details here */}
         <Button onClick={() => onAcceptRequest(selectedOrder.id)} color="primary" variant="contained" style={{ marginTop: 20 }} fullWidth>
           Accept Request
         </Button>
@@ -33,22 +27,20 @@ const OrderDetailsModal = ({ selectedOrder, handleClose, onAcceptRequest }) => {
 };
 
 function parseAndFormatDate(dateString) {
-    // Parse the date string with timezone information
-    const parsedDate = new Date(dateString);
-
-    // Format the date and time in a user-friendly way
-    const options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      timeZone: 'UTC', // To display in UTC (adjust if needed)
-    };
-
-    return parsedDate.toLocaleDateString('en-US', options); // US English locale for formatting
-  } 
+  // Parse the date string with timezone information
+  const parsedDate = new Date(dateString);
+  // Format the date and time in a user-friendly way
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC', // To display in UTC (adjust if needed)
+  };
+  return parsedDate.toLocaleDateString('en-US', options); // US English locale for formatting
+}
 
 const ActiveOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -85,7 +77,7 @@ const ActiveOrders = () => {
       if (!token) {
         throw new Error('Token not found in cookies');
       }
-  
+
       const response = await fetch(`${BASE_URL}/accept-orders/${orderId}/`, {
         method: 'PATCH',
         headers: {
@@ -103,7 +95,7 @@ const ActiveOrders = () => {
       if (!response.ok) {
         throw new Error('Failed to accept request');
       }
-  
+
       window.alert('Request accepted successfully');
       handleCloseModal();
       // Reload the page
@@ -115,7 +107,7 @@ const ActiveOrders = () => {
   };
 
   return (
-    <div style={{ margin: '20px auto', maxWidth: 900 }}>
+    <div style={{ margin: '20px auto', maxWidth: '100%' }}>
       <Typography variant="h5" style={{ textAlign: 'center', marginBottom: 20 }}>
         Active Orders
       </Typography>
@@ -124,13 +116,13 @@ const ActiveOrders = () => {
           No active orders
         </Typography>
       ) : (
-        <Table style={{ minWidth: 650 }}>
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell style={{ fontWeight: 'bold' }}>Service</TableCell>
               <TableCell style={{ fontWeight: 'bold' }}>Amount</TableCell>
               <TableCell style={{ fontWeight: 'bold' }}>Address</TableCell>
-              <TableCell style={{ fontWeight: 'bold' }}>Order-Date</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }}>Order Date</TableCell>
               <TableCell style={{ fontWeight: 'bold' }}>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -153,10 +145,9 @@ const ActiveOrders = () => {
           </TableBody>
         </Table>
       )}
-     <Modal open={Boolean(selectedOrder)} onClose={handleCloseModal}>
+      <Modal open={Boolean(selectedOrder)} onClose={handleCloseModal}>
         <OrderDetailsModal selectedOrder={selectedOrder} handleClose={handleCloseModal} onAcceptRequest={handleAcceptRequest} />
       </Modal>
-
     </div>
   );
 }

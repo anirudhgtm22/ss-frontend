@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import {
   Card,
@@ -12,6 +14,7 @@ import {
   IconButton,
   TextField,
   Snackbar,
+  useMediaQuery,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import MuiAlert from '@mui/material/Alert';
@@ -40,6 +43,7 @@ const BookNowPage = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -204,7 +208,7 @@ const BookNowPage = () => {
           }}
         >
           <Fade in={openModal}>
-            <div style={{ backgroundColor: '#f0f0f0', padding: '2rem', borderRadius: '8px',  width: '60%', height: '65%',margin: 'auto', marginTop: '10%', marginBottom: '10%', textAlign: 'left', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', position: 'relative' }}>
+            <div style={{ backgroundColor: '#f0f0f0', padding: '2rem', borderRadius: '8px',  width: isMobile ? '90%' : '60%', height: '65%',margin: 'auto', marginTop: '10%', marginBottom: '10%', textAlign: 'left', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', position: 'relative' }}>
               <Typography variant="h4" gutterBottom style={{ textAlign: 'center', fontWeight: 'bold', fontFamily: 'Roboto, sans-serif' }}>
                 Place Order
               </Typography>

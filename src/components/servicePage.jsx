@@ -65,12 +65,12 @@ const ServicesPage = () => {
                 boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
                 transition: 'transform 0.3s',
                 '&:hover': {
-                  transform: 'scale(1.05)', // Scale up the card on hover
-                  cursor: 'pointer', // Change cursor to pointer on hover
+                  transform: 'scale(1.05)',
+                  cursor: 'pointer',
                 },
               }}
               elevation={3}
-              onClick={() => handleKnowMore(service)} // Handle click event
+              onClick={() => handleKnowMore(service)}
             >
               <CardContent>
                 <Typography variant="h5" component="h2">
@@ -84,30 +84,28 @@ const ServicesPage = () => {
                   Amount: {service.amount}
                 </Typography>
               </CardContent>
-              <CardActions 
-            style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              padding: '1rem', 
-              borderTop: '1px solid #f0f0f0', 
-              textAlign: 'center' // Align content of CardActions to center
-            }}
-          >
-            <Button 
-              style={{ 
-                color: '#fff', 
-                backgroundColor: '#3f51b5', 
-                '&:hover': { 
-                  backgroundColor: '#303f9f' 
-                }
-              }} 
-              size="small" 
-              onClick={() => handleKnowMore(service)}
-            >
-              Know more
-            </Button>
-          </CardActions>
-
+              <CardActions
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '1rem',
+                  borderTop: '1px solid #f0f0f0',
+                }}
+              >
+                <Button
+                  style={{
+                    color: '#fff',
+                    backgroundColor: '#3f51b5',
+                    '&:hover': {
+                      backgroundColor: '#303f9f',
+                    },
+                  }}
+                  size="small"
+                  onClick={() => handleKnowMore(service)}
+                >
+                  Know more
+                </Button>
+              </CardActions>
             </Card>
           </Grid>
         ))}
@@ -122,7 +120,7 @@ const ServicesPage = () => {
         }}
       >
         <Fade in={openModal}>
-          <div style={{ backgroundColor: '#fff', padding: '2rem', borderRadius: '8px', maxWidth: '60%', margin: 'auto', marginTop: '10%', textAlign: 'left', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
+          <div style={{ backgroundColor: '#fff', padding: '2rem', borderRadius: '8px', maxWidth: '90%', margin: 'auto', marginTop: '10%', textAlign: 'left', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
             <Typography variant="h5" gutterBottom style={{ fontWeight: 'bold', marginBottom: '1rem' }}>
               {selectedService && selectedService.title}
             </Typography>

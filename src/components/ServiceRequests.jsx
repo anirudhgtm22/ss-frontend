@@ -300,7 +300,8 @@ const ServiceRequests = () => {
       <Typography variant="h4" gutterBottom align='center'>
         My Service Requests
       </Typography>
-      <Table style={{ marginTop: '16px' }}>
+      <div style={{ overflowX: 'auto' }}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell>Order ID</TableCell>
@@ -363,6 +364,7 @@ const ServiceRequests = () => {
           ))}
         </TableBody>
       </Table>
+      </div>
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
         <Alert elevation={6} variant="filled" onClose={handleCloseSnackbar} severity="success">
           Action completed successfully!

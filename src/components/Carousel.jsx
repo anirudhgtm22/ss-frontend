@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -12,13 +13,11 @@ import img6 from '../components/assets/img6.png'
 function CarouselComp() {
   const [index, setIndex] = useState(0);
 
-  // Use useEffect to start the interval when the component mounts
   useEffect(() => {  
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % 3); // Assuming there are 3 slides
+      setIndex((prevIndex) => (prevIndex + 1) % 6); // Adjusted for 6 slides
     }, 2000); // Change slide every 2 seconds
 
-    // Clear the interval when the component unmounts
     return () => clearInterval(interval);
   }, []);
 
@@ -34,7 +33,7 @@ function CarouselComp() {
   };
 
   const carouselStyle = {
-    height: '99vh', // 3/4 of the viewport height
+    height: '100%', // Adjusted to cover the entire viewport height
     overflow: 'hidden',
     position: 'relative'
   };
@@ -44,13 +43,13 @@ function CarouselComp() {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center', // Center the image vertically and horizontally
-    overflow: 'hidden' // Hide any overflow to prevent cropping
+    alignItems: 'center',
+    overflow: 'hidden'
   };
 
   const imageStyle = {
-    maxWidth: '100%', // Ensure the image doesn't exceed the container width
-    maxHeight: '100%', // Ensure the image doesn't exceed the container height
+    maxWidth: '100%', // Adjusted to fit the container width
+    maxHeight: '100%', // Adjusted to fit the container height
   }; 
 
   return (
@@ -66,13 +65,13 @@ function CarouselComp() {
           <img src={img3} alt="Third slide" style={imageStyle} />
         </div>
         <div style={imageContainerStyle}>
-          <img src={img4} alt="Third slide" style={imageStyle} />
+          <img src={img4} alt="Fourth slide" style={imageStyle} />
         </div>
         <div style={imageContainerStyle}>
-          <img src={img5} alt="Third slide" style={imageStyle} />
+          <img src={img5} alt="Fifth slide" style={imageStyle} />
         </div>
         <div style={imageContainerStyle}>
-          <img src={img6} alt="Third slide" style={imageStyle} />
+          <img src={img6} alt="Sixth slide" style={imageStyle} />
         </div>
       </Slider>
     </div>

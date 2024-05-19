@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
@@ -46,7 +47,7 @@ const Navbar = () => {
           <RouterLink to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Swarn Sarthi</RouterLink>
         </Typography>
 
-        <Typography variant="body1">
+        <Typography variant="body1" sx={{ display: 'flex', flexWrap: 'wrap' }}>
           <RouterLink to="/about" style={{ marginRight: '20px', color: 'inherit', textDecoration: 'none' }}>About</RouterLink>
           <RouterLink to="/services" style={{ marginRight: '20px', color: 'inherit', textDecoration: 'none' }}>Services</RouterLink>
           {isTokenExists() && (
@@ -54,10 +55,8 @@ const Navbar = () => {
           )}
         </Typography>
 
-        <IconButton onClick={handleMenuClick} size="large" color="inherit" sx={{ marginLeft: 'auto' }}>
-          <Avatar alt="Profile" src={null} sx={{ bgcolor: 'grey' }}>
-            <AccountCircleIcon />
-          </Avatar>
+        <IconButton onClick={handleMenuClick} size="large" color="inherit">
+          <AccountCircleIcon />
         </IconButton>
         <Menu
           anchorEl={anchorEl}
